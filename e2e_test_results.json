@@ -1,0 +1,114 @@
+[
+  {
+    "suite": "Infrastructure",
+    "testName": "Supabase Admin Client Connection",
+    "status": "PASS",
+    "durationMs": 680,
+    "details": "Connected to Supabase PostgreSQL & pgvector successfully"
+  },
+  {
+    "suite": "Infrastructure",
+    "testName": "Supabase Database Schema Integrity",
+    "status": "PASS",
+    "durationMs": 712,
+    "details": "Verified books, book_chunks, book_figures, and book_flashcards schemas"
+  },
+  {
+    "suite": "PDF Ingestion",
+    "testName": "Upload Real PDF Document & SHA-256 Deduplication",
+    "status": "PASS",
+    "durationMs": 1062,
+    "details": "Book ID: b1e634f4-34dd-4882-bef6-8b47d79e8543, Deduplicated: true, Pages: 4, Status: completed"
+  },
+  {
+    "suite": "PDF Ingestion",
+    "testName": "Ingestion Failure Handling: Reject Non-PDF File",
+    "status": "PASS",
+    "durationMs": 17,
+    "details": "Correctly rejected invalid file with error code: INVALID_FILE_TYPE"
+  },
+  {
+    "suite": "PDF Ingestion",
+    "testName": "Ingestion Failure Handling: Empty Request",
+    "status": "PASS",
+    "durationMs": 12,
+    "details": "Correctly rejected empty upload request with 400"
+  },
+  {
+    "suite": "Books API",
+    "testName": "GET /api/books Returns Active Book List",
+    "status": "PASS",
+    "durationMs": 290,
+    "details": "Fetched 3 books. Physics textbook status: completed, total pages: 717"
+  },
+  {
+    "suite": "RAG QA Engine",
+    "testName": "Normal Case: Explain Newton's second law of motion",
+    "status": "PASS",
+    "durationMs": 7614,
+    "details": "Generated grounded answer (3280 chars) with 3 citations and 1 figures. Cited pages: 101, 105, 106"
+  },
+  {
+    "suite": "RAG QA Engine",
+    "testName": "Citation Grounding & Verbatim Quote Verification",
+    "status": "PASS",
+    "durationMs": 1532,
+    "details": "Verified citations map to genuine textbook database chunks (verified 3 chunks)"
+  },
+  {
+    "suite": "RAG QA Engine",
+    "testName": "Edge Case: Insufficient Context Query Handled Safely",
+    "status": "PASS",
+    "durationMs": 5538,
+    "details": "Correctly flagged is_insufficient: true without hallucinating citations for ungrounded query"
+  },
+  {
+    "suite": "RAG QA Engine",
+    "testName": "Failure Case: Empty Question Rejected",
+    "status": "PASS",
+    "durationMs": 31,
+    "details": "Correctly returned 400 INVALID_INPUT for whitespace question"
+  },
+  {
+    "suite": "RAG QA Engine",
+    "testName": "Failure Case: Invalid Book ID Returns 404",
+    "status": "PASS",
+    "durationMs": 290,
+    "details": "Correctly returned 404 NOT_FOUND for non-existent book ID"
+  },
+  {
+    "suite": "Diagram Retrieval",
+    "testName": "GET /api/books/[bookId]/figures Retrieval & Image Status",
+    "status": "PASS",
+    "durationMs": 1612,
+    "details": "Retrieved 73 figures. Sample \"Figure 1.2.1\" (Page 6) returned HTTP 200 (image/png)"
+  },
+  {
+    "suite": "Flashcards",
+    "testName": "Generate Grounded Flashcards with Diagrams",
+    "status": "PASS",
+    "durationMs": 6076,
+    "details": "Synthesized 4 flashcards. Diagram attached: true. Card 1: \"Front — In Figure 5.1.3, three separate situations...\""
+  },
+  {
+    "suite": "Flashcards",
+    "testName": "Verify Flashcard Persistence: GET /api/books/[bookId]/flashcards",
+    "status": "PASS",
+    "durationMs": 400,
+    "details": "Retrieved 41 persisted flashcards from Supabase book_flashcards table"
+  },
+  {
+    "suite": "Adaptive Quiz",
+    "testName": "Generate Multi-Choice Quiz Questions with Educational Explanations",
+    "status": "PASS",
+    "durationMs": 4089,
+    "details": "Generated 4 valid quiz questions with 4 options and detailed scientific rationales. Sample Q: \"According to Newton's Second Law, what happens to ...\""
+  },
+  {
+    "suite": "Security Audit",
+    "testName": "API Payloads Do Not Expose Service Role Credentials",
+    "status": "PASS",
+    "durationMs": 672,
+    "details": "Verified no private service keys or API credentials leaked across public API endpoints"
+  }
+]
